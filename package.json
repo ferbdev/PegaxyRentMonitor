@@ -1,0 +1,19 @@
+{
+  "name": "pegaxy-bot-js",
+  "version": "0.0.0",
+  "description": "PegaxyBotJs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "discord-webhook-node": "^1.1.8",
+    "linq": "^3.2.3",
+    "ntp-time-sync": "^0.2.0",
+    "readline-sync": "^1.4.10"
+  }
+}
