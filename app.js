@@ -78,11 +78,11 @@ async function GetPrice(){
   });
 }
 
-const sendDiscordMessage = async (link, imageurl, profit, winrate, pgx, energy, duration, avgReward, color) => {
+const sendDiscordMessage = async (link, imageurl, profit, winrate, pgx, energy, duration, avgReward, color, title) => {
   if (hook != null){
       const embed = new MessageBuilder()
       .setAuthor('Pegaxy Robot')
-      .setTitle('Pegaxy encontrado')
+      .setTitle(title)
       .setURL(link)
       .addField('Profit (R$)', profit, true)
       .addField('WinRate (%)', winrate)
@@ -148,7 +148,7 @@ async function StartRunBot() {
 
               var historyCount = Object.keys(history).length;
 
-              if (historyCount < 25){
+              if (historyCount < 100){
                 return;
               }
 
@@ -183,21 +183,26 @@ async function StartRunBot() {
               var costBenefit = profit / price;
 
               var color;
+              var title;
 
               if (costBenefit >= 3) {
                 color = '#24cf11';
+                title = 'PEGAXY [A+]';
               }
               else
               if (costBenefit >= 2) {
                 color = '#80cf11';
+                title = 'PEGAXY [A]';
               }
               else
               if (costBenefit >= 1) {
                 color = '#bfcf11';
+                title = 'PEGAXY [B+]';
               }
               else
               if (costBenefit <= 1) {
                 color = '#cfb311';
+                title = 'PEGAXY [B]';
               }
 
               console.log("Total vis", totalReward);
@@ -224,7 +229,7 @@ async function StartRunBot() {
 
               if (duration <= 24 && profit >= 80){
                 console.log("profitou");
-                sendDiscordMessage("https://play.pegaxy.io/renting/listing/" + listId, pegaImage, profit + " brl", winRate + "%", price.toString(), energy.toString(), duration.toString(), averageReward.toString(), color);
+                sendDiscordMessage("https://play.pegaxy.io/renting/listing/" + listId, pegaImage, profit + " brl", winRate + "%", price.toString(), energy.toString(), duration.toString(), averageReward.toString(), color, title);
               }
 
             })
@@ -254,4 +259,4 @@ setInterval(async ()=>{
     
     await StartRunBot();
 
-}, 2000);
+}, 5000);
