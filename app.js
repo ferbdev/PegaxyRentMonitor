@@ -259,4 +259,4 @@ setInterval(async ()=>{
     
     await StartRunBot();
 
-}, 5000);
+}, 3000);
