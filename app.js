@@ -101,7 +101,7 @@ const sendDiscordMessage = async (link, imageurl, profit, winrate, pgx, energy, 
 async function StartRunBot() {
     var config = {
         method: 'get',
-        url: 'https://api.pegaxy.io/rent/0?rentMode=PAY_RENT_FEE'
+        url: 'https://api-apollo.pegaxy.io/v1/game-api/rent/0?rentMode=PAY_RENT_FEE'
       };
       
       axios(config)
@@ -136,7 +136,7 @@ async function StartRunBot() {
 
             var config = {
               method: 'get',
-              url: 'https://api.pegaxy.io/race/history/pega/' + arr[index].pegaId,
+              url: 'https://api-apollo.pegaxy.io/v1/game-api/race/history/pega/' + arr[index].pegaId,
               headers: { }
             };
 
