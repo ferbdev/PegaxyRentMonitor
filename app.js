@@ -6,6 +6,8 @@ var checkedHorses = [0];
 
 const hook = new Webhook("https://discord.com/api/webhooks/935418365210656808/4_eQt5KGRP5uxrOGVN63RAhcl305IY5N6b-kjSaiddjUcApCBvbzRQ--f0gkPvG0JbV_");
 
+const hook2 = new Webhook("https://discord.com/api/webhooks/941467672175050762/cViVIG9NdLfuO1Xy_-aL0jGv51pFAo8QceCf2OUydbxS33-JVjvk3Kh0vMl22X5IaDGo");
+
 console.log('Iniciando bot');
 
 //puppeteer.use(StealthPlugin());
@@ -78,8 +80,8 @@ async function GetPrice(){
   });
 }
 
-const sendDiscordMessage = async (link, imageurl, profit, winrate, pgx, energy, duration, avgReward, color, title) => {
-  if (hook != null){
+const sendDiscordMessage = async (sendHook, link, imageurl, profit, winrate, pgx, energy, duration, avgReward, color, title) => {
+  if (sendHook != null){
       const embed = new MessageBuilder()
       .setAuthor('Pegaxy Robot')
       .setTitle(title)
@@ -94,7 +96,7 @@ const sendDiscordMessage = async (link, imageurl, profit, winrate, pgx, energy, 
       .setThumbnail(imageurl)
       .setTimestamp();
 
-      hook.send(embed);
+      sendHook.send(embed);
   }
 }
 
@@ -229,7 +231,12 @@ async function StartRunBot() {
 
               if (duration <= 24 && profit >= 80){
                 console.log("profitou");
-                sendDiscordMessage("https://play.pegaxy.io/renting/listing/" + listId, pegaImage, profit + " brl", winRate + "%", price.toString(), energy.toString(), duration.toString(), averageReward.toString(), color, title);
+                sendDiscordMessage(hook, "https://play.pegaxy.io/renting/listing/" + listId, pegaImage, profit + " brl", winRate + "%", price.toString(), energy.toString(), duration.toString(), averageReward.toString(), color, title);
+              }
+
+              if ((duration >= 48 && duration <= 36) && profit >= 400){
+                console.log("profitou");
+                sendDiscordMessage(hook2, "https://play.pegaxy.io/renting/listing/" + listId, pegaImage, profit + " brl", winRate + "%", price.toString(), energy.toString(), duration.toString(), averageReward.toString(), color, title);
               }
 
             })
