@@ -229,7 +229,7 @@ async function StartRunBot() {
 
               winRate = winRate.toFixed(2);
 
-              if (duration <= 24 && profit >= 80){
+              if ((duration <= 24 && profit >= 80) || profit >= 1000){
                 console.log("profitou");
                 sendDiscordMessage(hook, "https://play.pegaxy.io/renting/listing/" + listId, pegaImage, profit + " brl", winRate + "%", price.toString(), energy.toString(), duration.toString(), averageReward.toString(), color, title);
               }
